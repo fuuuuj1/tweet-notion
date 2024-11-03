@@ -1,44 +1,39 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import { useEffect } from "react";
+import { Button, Heading, TextAreaField } from '@aws-amplify/ui-react';
 
 function App() {
-  const { user, signOut } = useAuthenticator();
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
+    
   }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
-  function deleteTodo(id: string) {
-    client.models.Todo.delete({ id });
-  }
 
   return (
     <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li 
-            key={todo.id}
-            onClick={() => deleteTodo(todo.id)}
-          >
-            {todo.content}
-          </li>
-        ))}
-      </ul>
-      <button onClick={signOut}>Sign out</button>
+      <Heading 
+        level={5}
+        marginBottom={12}
+        color={"white"}
+      >
+        Input your post
+      </Heading>
+      <TextAreaField
+        descriptiveText=""
+        label=""
+        name="tweet"
+        placeholder=""
+        rows={5}
+        width={"100%"}
+        color={"white"}
+        inputStyles={{ color: 'white' }}
+        marginBottom={24}
+      />
+      <Button
+        loadingText=""
+        onClick={() => {alert("submitting...")}}
+        color={"white"}
+        className="submit-button"
+        isLoading={false}
+      >post</Button>
     </main>
   );
 }

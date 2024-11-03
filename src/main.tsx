@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Authenticator 
       variation="modal"
-      // hideSignUp={true}
+      hideSignUp={true}
     >
       <App />
     </Authenticator>
