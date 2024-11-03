@@ -12,9 +12,8 @@ Amplify.configure(outputs);
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Authenticator 
-      socialProviders={['google']} 
       variation="modal"
-      hideSignUp={true}
+      // hideSignUp={true}
     >
       <App />
     </Authenticator>

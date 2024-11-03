@@ -63,17 +63,3 @@ a {
   font-weight: 800;
   text-decoration: none;
 }
-
-/* 通常のsign in の導線を消す 少々不格好なのでいずれいい感じに位置関係を整えたい */
-[data-amplify-authenticator] [data-amplify-router] fieldset {
-  display: none;
-}
-[data-amplify-authenticator] .amplify-divider {
-  display: none;
-}
-[data-amplify-authenticator] form div:not(.federated-sign-in-container) button {
-  display: none;
-}
-[data-amplify-authenticator] form + [data-amplify-footer] {
-  display: none;
-}
